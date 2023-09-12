@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           tags: fd_sdk_vendor:humble
-          file: .docker/ci/Dockerfile
+          file: .docker/Dockerfile
           push: false
 
       - name: Build
