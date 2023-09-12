@@ -28,11 +28,11 @@ include(FetchContent)
 
 # Downdload SDK binaries
 #------------------------
-FetchContent_Declare(
+fetchcontent_declare(
   fd_sdk_binaries
   URL      https://www.forcedimension.com/downloads/sdk/sdk-${FD_SDK_VERSION}-linux-x86_64-gcc.tar.gz
 )
-FetchContent_MakeAvailable(fd_sdk_binaries)
+fetchcontent_makeavailable(fd_sdk_binaries)
 
 # Set DHD and DRD library paths
 #-------------------------------
@@ -56,21 +56,22 @@ target_include_directories(${PROJECT_NAME} INTERFACE
   $<INSTALL_INTERFACE:include>
 )
 target_link_libraries(
-  ${PROJECT_NAME}
-  INTERFACE
-   ${CMAKE_INSTALL_PREFIX}/lib/libdhd.so.${VERSION_SDK_MAJOR}
-   ${CMAKE_INSTALL_PREFIX}/lib/libdrd.so.${VERSION_SDK_MAJOR}
-   usb-1.0
+  ${PROJECT_NAME} INTERFACE
+  ${CMAKE_INSTALL_PREFIX}/lib/libdhd.so.${VERSION_SDK_MAJOR}
+  ${CMAKE_INSTALL_PREFIX}/lib/libdrd.so.${VERSION_SDK_MAJOR}
+  usb-1.0
 )
 
 # Testing
 #----------
 if(BUILD_TESTING)
+  find_package(ament_cmake_test REQUIRED)
   find_package(ament_lint_auto REQUIRED)
   set(ament_cmake_copyright_FOUND TRUE)
   set(ament_cmake_cpplint_FOUND TRUE)
 
   ament_lint_auto_find_test_dependencies()
+
 
   # TODO(tpoignonec): Extra unit tests ?
   # See https://github.com/ros2/libyaml_vendor/blob/rolling/CMakeLists.txt for an example
