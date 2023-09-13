@@ -14,9 +14,13 @@
 //
 // Author: Thibault Poignonec (thibault.poignonec@gmail.com)
 
-#ifndef FD_SDK_VENDOR__DRD_HPP_
-#define FD_SDK_VENDOR__DRD_HPP_
+#include <gtest/gtest.h>
 
-#include "drdc.h" // NOLINT
+#include <fd_sdk_vendor/dhd.hpp>
 
-#endif  // FD_SDK_VENDOR__DRD_HPP_
+// Test nlp interface
+TEST(test_dhd, test_major_SDK_version) {
+  int major, minor, release, revision;
+  dhdGetSDKVersion(&major, &minor, &release, &revision);
+  EXPECT_EQ(major, 3);
+}
