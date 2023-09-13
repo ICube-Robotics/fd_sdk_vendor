@@ -71,32 +71,6 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
 
   ament_lint_auto_find_test_dependencies()
-
-  #[==[
-  add_library(fd_sdk_libraries INTERFACE)
-  target_include_directories(fd_sdk_libraries INTERFACE "${CMAKE_INSTALL_PREFIX}/include")
-  target_link_directories(fd_sdk_libraries INTERFACE "${CMAKE_INSTALL_PREFIX}/lib")
-  get_target_property(LINKED_LIBS ${PROJECT_NAME} LINK_LIBRARIES)
-  target_link_libraries(
-    fd_sdk_libraries
-    INTERFACE
-    ${LINKED_LIBS}
-  )
-  add_dependencies(fd_sdk_libraries ${PROJECT_NAME})
-  #]==]
-  find_package(ament_cmake_gtest REQUIRED)
-  ament_add_gtest(
-    test_dhd
-    test/test_dhd.cpp
-    test/test_drd.cpp
-  )
-  target_link_libraries(test_dhd ${PROJECT_NAME})
-  target_include_directories(
-    test_dhd
-    PRIVATE
-    "${CMAKE_INSTALL_PREFIX}/include"
-  )
-
 endif()
 
 # Install
