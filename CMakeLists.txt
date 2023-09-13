@@ -23,6 +23,9 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(libusb REQUIRED libusb-1.0)
+
 find_package(ament_cmake REQUIRED)
 include(FetchContent)
 
@@ -59,7 +62,7 @@ target_link_libraries(
   ${PROJECT_NAME} INTERFACE
   ${CMAKE_INSTALL_PREFIX}/lib/libdhd.so.${VERSION_SDK_MAJOR}
   ${CMAKE_INSTALL_PREFIX}/lib/libdrd.so.${VERSION_SDK_MAJOR}
-  usb-1.0
+  ${libusb-1.0_LIBRARIES}
 )
 
 # Testing
@@ -71,6 +74,25 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
 
   ament_lint_auto_find_test_dependencies()
+
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(
+    test_dhd
+    test/test_dhd.cpp
+    test/test_drd.cpp
+  )
+  target_include_directories(
+    test_dhd
+    PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${fd_sdk_binaries_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  )
+  target_link_libraries(test_dhd
+    ${dhd_LIBS}
+    ${drd_LIBS}
+    ${libusb-1.0_LIBRARIES}
+  )
 endif()
 
 # Install
