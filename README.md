@@ -1,7 +1,7 @@
 # fd_sdk_vendor
 ROS 2 vendor package for Force Dimension SDK (version 3.16.0).
 
-Author: Thibault Poignonec (thibault.poignonec@gmail.com)
+Author: Thibault Poignonec (tpoignonec@unistra.fr)
 
 [![CI](https://github.com/tpoignonec/fd_sdk_vendor/actions/workflows/ci.yml/badge.svg)](https://github.com/tpoignonec/fd_sdk_vendor/actions/workflows/ci.yml)
 
