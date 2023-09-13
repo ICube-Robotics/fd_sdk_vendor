@@ -21,6 +21,6 @@
 // Test nlp interface
 TEST(test_dhd, test_major_SDK_version) {
   int major, minor, release, revision;
-  dhdGetSDKVersion (&major, &minor, &release, &revision);
+  dhdGetSDKVersion(&major, &minor, &release, &revision);
   EXPECT_EQ(major, 3);
 }

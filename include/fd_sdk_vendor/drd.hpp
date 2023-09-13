@@ -17,6 +17,6 @@
 #ifndef FD_SDK_VENDOR__DRD_HPP_
 #define FD_SDK_VENDOR__DRD_HPP_
 
-#include "drdc.h"
+#include "drdc.h" // NOLINT
 
 #endif  // FD_SDK_VENDOR__DRD_HPP_
