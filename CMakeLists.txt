@@ -65,36 +65,6 @@ target_link_libraries(
   ${libusb-1.0_LIBRARIES}
 )
 
-# Testing
-#----------
-if(BUILD_TESTING)
-  find_package(ament_cmake_test REQUIRED)
-  find_package(ament_lint_auto REQUIRED)
-  set(ament_cmake_copyright_FOUND TRUE)
-  set(ament_cmake_cpplint_FOUND TRUE)
-
-  ament_lint_auto_find_test_dependencies()
-
-  find_package(ament_cmake_gtest REQUIRED)
-  ament_add_gtest(
-    test_dhd
-    test/test_dhd.cpp
-    test/test_drd.cpp
-  )
-  target_include_directories(
-    test_dhd
-    PRIVATE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<BUILD_INTERFACE:${fd_sdk_binaries_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-  )
-  target_link_libraries(test_dhd
-    ${dhd_LIBS}
-    ${drd_LIBS}
-    ${libusb-1.0_LIBRARIES}
-  )
-endif()
-
 # Install
 #----------
 
@@ -124,6 +94,38 @@ install(
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
 )
+
+
+# Testing
+#----------
+if(BUILD_TESTING)
+  find_package(ament_cmake_test REQUIRED)
+  find_package(ament_lint_auto REQUIRED)
+  set(ament_cmake_copyright_FOUND TRUE)
+  set(ament_cmake_cpplint_FOUND TRUE)
+
+  ament_lint_auto_find_test_dependencies()
+
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(
+    test_dhd
+    test/test_dhd.cpp
+    test/test_drd.cpp
+  )
+  target_include_directories(
+    test_dhd
+    PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${fd_sdk_binaries_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  )
+  target_link_libraries(test_dhd
+    ${CMAKE_INSTALL_PREFIX}/lib/libdhd.so.${VERSION_SDK_MAJOR}
+    ${CMAKE_INSTALL_PREFIX}/lib/libdrd.so.${VERSION_SDK_MAJOR}
+    ${libusb-1.0_LIBRARIES}
+  )
+endif()
+
 
 ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 
