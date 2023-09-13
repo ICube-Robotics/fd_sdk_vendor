@@ -57,8 +57,8 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 )
 target_link_libraries(
   ${PROJECT_NAME} INTERFACE
-  ${CMAKE_INSTALL_PREFIX}/lib/libdhd.so.${VERSION_SDK_MAJOR}
-  ${CMAKE_INSTALL_PREFIX}/lib/libdrd.so.${VERSION_SDK_MAJOR}
+  ${dhd_LIBS}
+  ${drd_LIBS}
   usb-1.0
 )
 
@@ -71,6 +71,20 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
 
   ament_lint_auto_find_test_dependencies()
+
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(
+    test_dhd
+    test/test_dhd.cpp
+    test/test_drd.cpp
+  )
+  target_link_libraries(test_dhd ${PROJECT_NAME})
+  target_include_directories(
+    test_dhd
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  )
 endif()
 
 # Install
