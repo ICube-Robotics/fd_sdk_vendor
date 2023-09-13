@@ -57,8 +57,8 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 )
 target_link_libraries(
   ${PROJECT_NAME} INTERFACE
-  ${dhd_LIBS}
-  ${drd_LIBS}
+  ${CMAKE_INSTALL_PREFIX}/lib/libdhd.so.${VERSION_SDK_MAJOR}
+  ${CMAKE_INSTALL_PREFIX}/lib/libdrd.so.${VERSION_SDK_MAJOR}
   usb-1.0
 )
 
@@ -78,12 +78,17 @@ if(BUILD_TESTING)
     test/test_dhd.cpp
     test/test_drd.cpp
   )
-  target_link_libraries(test_dhd ${PROJECT_NAME})
   target_include_directories(
     test_dhd
-    PUBLIC
+    PRIVATE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${fd_sdk_binaries_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
+  )
+  target_link_libraries(test_dhd
+    ${dhd_LIBS}
+    ${drd_LIBS}
+    usb-1.0
   )
 endif()
 
