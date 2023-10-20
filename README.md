@@ -51,3 +51,20 @@ printf("Force Dimension SDK, version %i.%i.%i", major, minor, release);
 
 ...
 ```
+
+## Misc. utils
+
+For some applications, it might be necessary to retrieve the inertia matrix or other information for control purposes (e.g., impedance control).
+The header [fd_model.hpp](include/fd_sdk_vendor/fd_model.hpp) provides wrappers for some commonly used functionalities:
+
+- Get the Cartesian inertia matrix:
+
+```cpp
+#include <Eigen/Dense>
+#include <vector>
+
+#include "fd_sdk_vendor/fd_model.hpp"
+
+std::vector<double> joint_positions{0.0, 0.0, 0.0}; // typically 3 or 6 DoF
+bool ok = fd::get_cartesian_inertia(joint_positions, inertia_matrix);
+```
