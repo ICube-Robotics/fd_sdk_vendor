@@ -66,5 +66,7 @@ The header [fd_model.hpp](include/fd_sdk_vendor/fd_model.hpp) provides wrappers 
 #include "fd_sdk_vendor/fd_model.hpp"
 
 std::vector<double> joint_positions{0.0, 0.0, 0.0}; // typically 3 or 6 DoF
+
+Eigen::Matrix<double, 6, 6> inertia_matrix;
 bool ok = fd::get_cartesian_inertia(joint_positions, inertia_matrix);
 ```
