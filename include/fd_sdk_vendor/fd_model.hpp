@@ -17,6 +17,59 @@
 #ifndef FD_SDK_VENDOR__FD_MODEL_HPP_
 #define FD_SDK_VENDOR__FD_MODEL_HPP_
 
+#include <Eigen/Geometry>
+#include <Eigen/Dense>
+typedef Eigen::Matrix<double, 6, 6, Eigen::RowMajor> Mat66;
 
+#include <cmath>
+#include <vector>
+#include <iostream>
+
+#include "fd_sdk_vendor/dhd.hpp"
+
+namespace ft_model
+{
+/**
+     * @brief Get the cartesian inertia matrix (6x6 matrix) of the fd device.
+     *
+     * @warning Matrix expressed in default fd_sdk frame of ref! See force dimension user manual.
+     *
+     * @param joint_position Joint position of the device. At least a 3D vector, up to 7 DoF.
+     * @param inertia_matrix To return the inertia matrix by ref.
+     * @param device_id (opt.) ID of the fd device.
+     * @return true All OK
+     * @return false Failed to compute inertia matrix
+     */
+bool get_cartesian_inertia(
+  const std::vector<double> & joint_position,
+  Eigen::Matrix<double, 6, 6> & inertia_matrix,
+  char device_id = -1)
+{
+  // Test joint positions vector has a valid size
+  if (joint_position.size() < 3) {
+    std::cerr << "Invalid joint positions vector!" + \
+      "Size should be at least 3." << std::endl;
+  }
+  if (joint_position.size() > DHD_MAX_DOF) {
+    std::cerr << "Invalid joint positions vector!" + \
+      "Size should be less that DHD_MAX_DOF (i.e., usually <= 7-8)." << std::endl;
+  }
+  // Copy joint positions to c array
+  double c_inertia_array[6][6];
+  double c_joint_position[DHD_MAX_DOF] = {0.0};
+  for (uint i = 0; i < joint_position.size(); i++) {
+    c_joint_position[i] = joint_position[i];
+  }
+  // Get inertia from robot pose
+  int flag = 0;        // "Success" flag
+  flag += dhdEnableExpertMode();
+  flag += dhdJointAnglesToInertiaMatrix(joint_position, c_inertia_array, device_id_);
+  flag += dhdDisableExpertMode();
+  Eigen::Map<Mat66> inertia_array_map = Eigen::Map<Mat66>(&inertia_array[0][0]);
+  inertia_matrix = inertia_array_map;
+  return flag >= 0;
+}
+
+}  // namespace ft_model
 
 #endif  // FD_SDK_VENDOR__FD_MODEL_HPP_
