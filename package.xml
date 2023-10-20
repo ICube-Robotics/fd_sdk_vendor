@@ -14,6 +14,8 @@
   <buildtool_depend>ament_cmake_test</buildtool_depend>
   <buildtool_depend>pkg-config</buildtool_depend>
 
+  <depend>libusb-1.0-dev</depend>
+
   <test_depend>ament_cmake_copyright</test_depend>
   <test_depend>ament_cmake_lint_cmake</test_depend>
   <test_depend>ament_cmake_xmllint</test_depend>
