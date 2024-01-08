@@ -1,5 +1,5 @@
 # fd_sdk_vendor
-ROS 2 vendor package for Force Dimension SDK (version 3.16.0).
+ROS 2 vendor package for Force Dimension SDK.
 
 ***Tested with a Humble ROS distribution only (Ubuntu 22.04 LTS)***
 
