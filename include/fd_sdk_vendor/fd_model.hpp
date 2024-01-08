@@ -18,5 +18,4 @@
 #define FD_SDK_VENDOR__FD_MODEL_HPP_
 
 
-
 #endif  // FD_SDK_VENDOR__FD_MODEL_HPP_
