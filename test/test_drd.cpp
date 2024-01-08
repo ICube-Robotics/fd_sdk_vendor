@@ -18,7 +18,7 @@
 
 #include <fd_sdk_vendor/drd.hpp>
 
-// Test nlp interface
+// Test drd
 TEST(test_drd, test_major_SDK_version) {
   int major, minor, release, revision;
   dhdGetSDKVersion(&major, &minor, &release, &revision);

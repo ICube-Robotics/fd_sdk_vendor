@@ -1,8 +1,9 @@
 # fd_sdk_vendor
-ROS 2 vendor package for Force Dimension SDK (version 3.16.0).
+ROS 2 vendor package for Force Dimension SDK.
 
 ***Tested with a Humble ROS distribution only (Ubuntu 22.04 LTS)***
 
+![Force Dimension SDK](https://img.shields.io/badge/SDK_version-3.16.0-blue)
 [![CI (humble)](https://github.com/ICube-Robotics/fd_sdk_vendor/actions/workflows/ci.yml/badge.svg)](https://github.com/ICube-Robotics/fd_sdk_vendor/actions/workflows/ci.yml)
 [![Build tests (iron)](../../actions/workflows/ci-iron.yaml/badge.svg?branch=main)](../../actions/workflows/ci-iron.yaml?query=branch:main)
 [![Build tests (rolling)](../../actions/workflows/ci-rolling.yaml/badge.svg?branch=main)](../../actions/workflows/ci-rolling.yaml?query=branch:main)
