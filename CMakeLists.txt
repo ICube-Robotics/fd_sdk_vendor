@@ -16,7 +16,7 @@
 
 cmake_minimum_required(VERSION 3.11)
 project(fd_sdk_vendor)
-set(FD_SDK_VERSION "3.16.0")
+set(FD_SDK_VERSION "3.16.1")
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17) # Default to C++17
