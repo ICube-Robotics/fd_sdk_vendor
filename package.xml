@@ -4,8 +4,8 @@
   schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>fd_sdk_vendor</name>
-  <version>0.0.1</version>
-  <description>Vendored version of the Force Dimension SDK (version 3.16.0).</description>
+  <version>0.0.2</version>
+  <description>Vendored version of the Force Dimension SDK (version 3.16.1).</description>
   <maintainer email="thibault.poignonec@gmail.com">Thibault Poignonec</maintainer>
   <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->
   <author email="thibault.poignonec@gmail.com">Thibault Poignonec</author>
