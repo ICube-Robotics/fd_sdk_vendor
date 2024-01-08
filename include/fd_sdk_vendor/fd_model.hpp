@@ -22,8 +22,9 @@
 typedef Eigen::Matrix<double, 6, 6, Eigen::RowMajor> Mat66;
 
 #include <cmath>
-#include <vector>
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "fd_sdk_vendor/dhd.hpp"
 
@@ -47,11 +48,11 @@ bool get_cartesian_inertia(
 {
   // Test joint positions vector has a valid size
   if (joint_positions.size() < 3) {
-    std::cerr << "Invalid joint positions vector!" + \
+    std::cerr << std::string("") + "Invalid joint positions vector!" + \
       "Size should be at least 3." << std::endl;
   }
   if (joint_positions.size() > DHD_MAX_DOF) {
-    std::cerr << "Invalid joint positions vector!" + \
+    std::cerr << std::string("") + "Invalid joint positions vector!" + \
       "Size should be less that DHD_MAX_DOF (i.e., usually <= 7-8)." << std::endl;
   }
   // Copy joint positions to c array
@@ -63,9 +64,9 @@ bool get_cartesian_inertia(
   // Get inertia from robot pose
   int flag = 0;        // "Success" flag
   flag += dhdEnableExpertMode();
-  flag += dhdJointAnglesToInertiaMatrix(joint_positions, c_inertia_array, device_id_);
+  flag += dhdJointAnglesToInertiaMatrix(c_joint_positions, c_inertia_array, device_id);
   flag += dhdDisableExpertMode();
-  Eigen::Map<Mat66> inertia_array_map = Eigen::Map<Mat66>(&inertia_array[0][0]);
+  Eigen::Map<Mat66> inertia_array_map = Eigen::Map<Mat66>(&c_inertia_array[0][0]);
   inertia_matrix = inertia_array_map;
   return flag >= 0;
 }
