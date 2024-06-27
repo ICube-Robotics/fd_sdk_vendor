@@ -5,7 +5,7 @@ ROS 2 vendor package for Force Dimension SDK.
 
 ![Force Dimension SDK](https://img.shields.io/badge/SDK_version-3.16.1-blue)
 [![CI (humble)](https://github.com/ICube-Robotics/fd_sdk_vendor/actions/workflows/ci.yml/badge.svg)](https://github.com/ICube-Robotics/fd_sdk_vendor/actions/workflows/ci.yml)
-[![Build tests (iron)](../../actions/workflows/ci-iron.yaml/badge.svg?branch=main)](../../actions/workflows/ci-iron.yaml?query=branch:main)
+[![Build tests (jazzy)](../../actions/workflows/ci-jazzy.yaml/badge.svg?branch=main)](../../actions/workflows/ci-jazzy.yaml?query=branch:main)
 [![Build tests (rolling)](../../actions/workflows/ci-rolling.yaml/badge.svg?branch=main)](../../actions/workflows/ci-rolling.yaml?query=branch:main)
 
 ## Usage example
