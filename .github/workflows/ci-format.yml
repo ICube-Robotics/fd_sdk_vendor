@@ -4,8 +4,10 @@
 name: Format
 
 on:
-  workflow_dispatch:
   pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   pre-commit:
