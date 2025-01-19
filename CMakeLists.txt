@@ -33,7 +33,7 @@ include(FetchContent)
 #------------------------
 fetchcontent_declare(
   fd_sdk_binaries
-  URL      https://www.forcedimension.com/downloads/sdk/sdk-${FD_SDK_VERSION}-linux-x86_64-gcc.tar.gz
+  URL https://downloads.forcedimension.com/sdk/sdk-${FD_SDK_VERSION}-linux-x86_64-gcc.tar.gz
 )
 fetchcontent_makeavailable(fd_sdk_binaries)
 
